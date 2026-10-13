@@ -9,9 +9,10 @@ main{max-width:640px;margin:0 auto;padding:20px 16px 48px}h1{font-size:20px;marg
 .tag{background:var(--soft);border-radius:99px;padding:2px 10px}.reply{background:var(--soft);border-radius:10px;padding:12px;white-space:pre-wrap;margin:8px 0 12px}
 .row{display:flex;flex-wrap:wrap;gap:8px}a.b,button.b{flex:1 1 auto;text-align:center;text-decoration:none;font:inherit;font-size:15px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
 a.b.main{background:var(--btn);color:var(--btnink);border-color:var(--btn);flex-basis:100%;font-weight:600}a.src{color:var(--accent);font-size:14px}
-.empty{color:var(--sub)}footer{color:var(--sub);font-size:12px;margin-top:24px}
+.empty{color:var(--sub)}.alert{background:#fde8e6;color:#8a1c12;border:1px solid #f3b8b1;border-radius:12px;padding:12px 14px;margin:0 0 16px;font-weight:600}
+@media (prefers-color-scheme:dark){.alert{background:#3a1d1a;color:#ffb4a9;border-color:#6b2c25}}footer{color:var(--sub);font-size:12px;margin-top:24px}
 </style></head><body><main>
-<h1>今日の返信候補</h1><p class="meta">10/13（火）07:01 更新・5件</p>
+<div id="alerts"></div><h1>今日の返信候補</h1><p class="meta">10/13（火）10:33 更新・5件</p>
 <section class="card"><div class="head"><span>1</span><span class="tag">就活生の投稿</span></div>
 <a class="src" href="https://x.com/i/web/status/2109682970399515131" target="_blank" rel="noopener">元の投稿を開く</a>
 <div class="reply" id="r1">最終面接の前に、これまでの面接で話した志望理由やガクチカと食い違いがないかを見直しておくと落ち着きやすいです。そのうえで入社後にやりたいことを自分の言葉で1分ほど話せるようにしておくと、聞かれ方が変わっても対応しやすくなります。</div>
@@ -34,4 +35,5 @@ a.b.main{background:var(--btn);color:var(--btnink);border-color:var(--btn);flex-
 <div class="row"><a class="b main" href="https://x.com/intent/post?in_reply_to=2109611822634701050&amp;text=%E3%80%8C%E5%A3%81%E3%81%AB%E3%81%B6%E3%81%A4%E3%81%8B%E3%81%A3%E3%81%9F%E7%B5%8C%E9%A8%93%E3%80%8D%E3%81%AE%E8%A8%AD%E5%95%8F%E3%81%AF%E3%80%81%E5%A3%81%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%95%E3%82%88%E3%82%8A%E3%82%82%E3%80%81%E5%8E%9F%E5%9B%A0%E3%82%92%E3%81%A9%E3%81%86%E6%8D%89%E3%81%88%E3%81%A6%E4%BD%95%E3%82%92%E5%A4%89%E3%81%88%E3%81%9F%E3%81%8B%E3%81%AB%E5%AD%97%E6%95%B0%E3%82%92%E5%89%B2%E3%81%8F%E3%81%A8%E4%BC%9D%E3%82%8F%E3%82%8A%E3%82%84%E3%81%99%E3%81%84%E3%81%A7%E3%81%99%E3%80%82400%E5%AD%97%E3%81%AA%E3%82%89%E7%8A%B6%E6%B3%81%E8%AA%AC%E6%98%8E%E3%81%AF%E7%9F%AD%E3%82%81%E3%81%AB%E3%81%A8%E3%81%A9%E3%82%81%E3%80%81%E8%87%AA%E5%88%86%E3%81%AE%E8%A1%8C%E5%8B%95%E3%81%A8%E7%B5%90%E6%9E%9C%E3%80%81%E3%81%9D%E3%81%93%E3%81%8B%E3%82%89%E5%AD%A6%E3%82%93%E3%81%A0%E3%81%93%E3%81%A8%E3%82%92%E4%B8%AD%E5%BF%83%E3%81%AB%E7%B5%84%E3%81%BF%E7%AB%8B%E3%81%A6%E3%82%8B%E3%81%A8%E6%9B%B8%E3%81%8D%E3%82%84%E3%81%99%E3%81%84%E3%81%A7%E3%81%99%E3%80%82" target="_blank" rel="noopener">返信する</a>
 <button class="b" onclick="cp(5,this)">返信文をコピー</button><a class="b" href="https://x.com/intent/like?tweet_id=2109611822634701050" target="_blank" rel="noopener">いいね</a></div></section>
 <footer>押すのはご本人だけです。自動では返信・いいね・フォローをしません。返信の画面に文面が入っていないときは「返信文をコピー」を押して貼り付けてください。</footer>
-</main><script>function cp(i,b){navigator.clipboard.writeText(document.getElementById('r'+i).innerText).then(function(){b.textContent='コピーしました'})}</script></body></html>
+</main><script>fetch('status.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():{alerts:[]}}).then(function(d){var a=document.getElementById('alerts');(d.alerts||[]).forEach(function(t){var p=document.createElement('p');p.className='alert';p.textContent='要確認：'+t;a.appendChild(p)})}).catch(function(){});
+function cp(i,b){navigator.clipboard.writeText(document.getElementById('r'+i).innerText).then(function(){b.textContent='コピーしました'})}</script></body></html>
